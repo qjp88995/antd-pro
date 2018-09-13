@@ -13,6 +13,8 @@ import {
   Tooltip,
 } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
+import Ueditor from '@/components/Editors/Ueditor';
+import { Cover } from '@/components/Upload/PicturesWall';
 import styles from './style.less';
 
 const FormItem = Form.Item;
@@ -48,11 +50,12 @@ class BasicForms extends PureComponent {
       labelCol: {
         xs: { span: 24 },
         sm: { span: 7 },
+        md: { span: 4 },
       },
       wrapperCol: {
         xs: { span: 24 },
         sm: { span: 12 },
-        md: { span: 10 },
+        md: { span: 18 },
       },
     };
 
@@ -187,6 +190,12 @@ class BasicForms extends PureComponent {
                   )}
                 </FormItem>
               </div>
+            </FormItem>
+            <FormItem {...formItemLayout} label="封面" help="单图上传组件，常用来做封面等">
+              {getFieldDecorator('cover')(<Cover />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label="内容编辑" help="百度编辑器，编辑富文本内容">
+              {getFieldDecorator('content')(<Ueditor />)}
             </FormItem>
             <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
               <Button type="primary" htmlType="submit" loading={submitting}>
