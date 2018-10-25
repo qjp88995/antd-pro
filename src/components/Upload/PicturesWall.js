@@ -153,7 +153,7 @@ export default PicturesWall;
 
 export const Cover = ({ value, onChange }) => (
   <div>
-    <Input value={value} onChange={onChange} />
+    <Input value={value} onChange={e => onChange(e.target.value)} />
     <PicturesWall
       value={value}
       onChange={onChange}
