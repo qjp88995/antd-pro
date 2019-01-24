@@ -92,17 +92,20 @@
     .ant-card-head {
       position: relative;
     }
+    .ant-card-head-title {
+      align-items: normal;
+    }
   }
 }
 
 .salesCardExtra {
-  height: 68px;
+  height: inherit;
 }
 
 .salesTypeRadio {
   position: absolute;
-  left: 24px;
-  bottom: 15px;
+  right: 54px;
+  bottom: 12px;
 }
 
 .offlineCard {
@@ -127,6 +130,25 @@
     }
     .ant-tabs-tab-active h4 {
       color: @primary-color;
+    }
+  }
+}
+
+.twoColLayout {
+  .salesCard {
+    height: calc(100% - 24px);
+  }
+  div[class^='ant-col']:last-child {
+    right: 0\9;
+    height: 100%\9;
+    position: absolute\9;
+  }
+  :global {
+    .ant-row {
+      display: flex;
+      display: block\9;
+      flex-flow: row wrap;
+      position: relative\9;
     }
   }
 }
