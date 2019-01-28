@@ -12,26 +12,30 @@ export default class Ueditor extends Component {
     }
 
     componentDidMount() {
-        this.editor = UE.getEditor(this.id, {
-            autoClearinitialContent: true, // focus时自动清空初始化时的内容
-            wordCount: false, // 关闭字数统计
-            elementPathEnabled: false, // 关闭elementPath
-            serverUrl: uploadHost,
-            initialFrameWidth: '100%',
-            initialFrameHeight: '600',
-        });
-        this.editor.ready(() => {
-            const { value } = this.props;
-            this.editor.setContent(value || '');
-            this.editor.addListener('contentChange', this.onChange);
-        });
+        if (UE){
+            this.editor = UE.getEditor(this.id, {
+                autoClearinitialContent: true, // focus时自动清空初始化时的内容
+                wordCount: false, // 关闭字数统计
+                elementPathEnabled: false, // 关闭elementPath
+                serverUrl: uploadHost,
+                initialFrameWidth: '100%',
+                initialFrameHeight: '600',
+            });
+            this.editor.ready(() => {
+                const { value } = this.props;
+                this.editor.setContent(value || '');
+                this.editor.addListener('contentChange', this.onChange);
+            });
+        }
     }
 
     componentWillUnmount() {
-        this.editor.removeListener('contentChange', this.onChange);
-        UE.delEditor(this.id);
-        const elem = document.getElementById(this.id);
-        elem.parentElement.removeChild(elem);
+        if (this.editor){
+            this.editor.removeListener('contentChange', this.onChange);
+            UE.delEditor(this.id);
+            const elem = document.getElementById(this.id);
+            elem.parentElement.removeChild(elem);
+        }
     }
 
     onChange = () => {
