@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuidv1 from 'uuid/v1';
 
 // eslint-disable-next-line no-underscore-dangle
-const { uploadHost } = window._config;
+const { uploadHost } = window.appConfig;
 const { UE } = window;
 
 export default class Ueditor extends Component {
