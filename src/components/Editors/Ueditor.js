@@ -23,12 +23,12 @@ export default class Ueditor extends Component {
         this.UEditor.ready(() => {
             const { value } = this.props;
             this.UEditor.setContent(value || '');
-            this.UEditor.addListener('selectionchange', this.onChange);
+            this.UEditor.addListener('contentChange', this.onChange);
         });
     }
 
     componentWillUnmount() {
-        this.UEditor.removeListener('selectionchange', this.onChange);
+        this.UEditor.removeListener('contentChange', this.onChange);
         UE.delEditor(this.id);
         const elem = document.getElementById(this.id);
         elem.parentElement.removeChild(elem);
