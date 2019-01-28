@@ -12,7 +12,7 @@ export default class Ueditor extends Component {
     }
 
     componentDidMount() {
-        this.UEditor = UE.getEditor(this.id, {
+        this.editor = UE.getEditor(this.id, {
             autoClearinitialContent: true, // focus时自动清空初始化时的内容
             wordCount: false, // 关闭字数统计
             elementPathEnabled: false, // 关闭elementPath
@@ -20,15 +20,15 @@ export default class Ueditor extends Component {
             initialFrameWidth: '100%',
             initialFrameHeight: '600',
         });
-        this.UEditor.ready(() => {
+        this.editor.ready(() => {
             const { value } = this.props;
-            this.UEditor.setContent(value || '');
-            this.UEditor.addListener('contentChange', this.onChange);
+            this.editor.setContent(value || '');
+            this.editor.addListener('contentChange', this.onChange);
         });
     }
 
     componentWillUnmount() {
-        this.UEditor.removeListener('contentChange', this.onChange);
+        this.editor.removeListener('contentChange', this.onChange);
         UE.delEditor(this.id);
         const elem = document.getElementById(this.id);
         elem.parentElement.removeChild(elem);
@@ -36,7 +36,7 @@ export default class Ueditor extends Component {
 
     onChange = () => {
         const { onChange } = this.props;
-        const value = this.UEditor.getContent();
+        const value = this.editor.getContent();
         if (onChange) onChange(value);
     };
 
