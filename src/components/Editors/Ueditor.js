@@ -23,8 +23,8 @@ export default class Ueditor extends Component {
             });
             this.editor.ready(() => {
                 const { value } = this.props;
-                this.editor.setContent(value || '');
                 this.editor.addListener('contentChange', this.onChange);
+                this.editor.setContent(value || '');
             });
         }
     }
